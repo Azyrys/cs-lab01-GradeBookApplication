@@ -16,7 +16,7 @@ namespace GradeBook.GradeBooks
             foreach (Student student in Students)
                 if (student.AverageGrade > averageGrade)
                     scoredHigher++;
-            double scoredHigherPercent = (double) scoredHigher / (double) Students.Count;
+            double scoredHigherPercent = (double)scoredHigher / (double)Students.Count;
             if (scoredHigherPercent < 0.2)
                 return 'A';
             else if (scoredHigherPercent < 0.4)
@@ -26,6 +26,26 @@ namespace GradeBook.GradeBooks
             else if (scoredHigherPercent < 0.8)
                 return 'D';
             return 'F';
+        }
+
+        public override void CalculateStatistics()
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+                return;
+            }
+            base.CalculateStatistics();
+        }
+        public override void CalculateStudentStatistics(string name)
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+                return;
+            }
+            base.CalculateStudentStatistics(name);
+
         }
     }
 }
